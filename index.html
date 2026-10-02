@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- ===== SEO: customise title/description/URL ===== -->
+  <title>Muralikrishnan Ravi — Solution Architect, Founder & Digital Health Innovator</title>
+  <meta name="description" content="Muralikrishnan Ravi is a solution architect and founder building technology partnerships (Aathee), digital health (Medippo) and student career ecosystems (YFreshy)." />
+  <link rel="canonical" href="https://muralikrishnanravi.github.io/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Muralikrishnan Ravi — Solution Architect • Founder • Digital Health Innovator" />
+  <meta property="og:description" content="Architecting scalable systems and building ventures at the intersection of technology, health and education." />
+  <meta property="og:url" content="https://muralikrishnanravi.github.io/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231e3a8a'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='16' font-weight='700' text-anchor='middle' fill='white'%3EM%3C/text%3E%3C/svg%3E" />
+
+  <!-- Structured data for search engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Muralikrishnan Ravi",
+    "url": "https://muralikrishnanravi.github.io/",
+    "email": "contact@muralikrishnanravi.com",
+    "jobTitle": "Solution Architect & Founder",
+    "sameAs": ["https://www.linkedin.com/in/muralikrishnanravi", "https://github.com/mrmuravi"]
+  }
+  </script>
+
+  <!-- Font: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind via CDN: no build step, deploys instantly on GitHub Pages.
+       ACCENT COLOUR: change the "accent" values below (deep blue now; emerald e.g. #047857 / #065f46). -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+          colors: { accent: { DEFAULT: '#1e3a8a', dark: '#172554', soft: '#eff3ff' }, ink: '#1f2328' }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Subtle entrance animation (disabled for reduced-motion users) */
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+    @keyframes drift { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
+    .drift { animation: drift 9s ease-in-out infinite; }
+    @media (prefers-reduced-motion: reduce) { .drift { animation: none; } }
+  </style>
+</head>
+
+<body class="bg-white text-ink font-sans antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:bg-white focus:px-3 focus:py-2 focus:rounded">Skip to content</a>
+
+  <!-- ================= NAV ================= -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur border-b border-gray-100">
+    <nav class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Primary">
+      <a href="#home" class="font-semibold tracking-tight">M<span class="text-accent">.</span>Ravi</a>
+      <ul class="hidden md:flex gap-8 text-sm text-gray-600">
+        <li><a class="hover:text-accent" href="#about">About</a></li>
+        <li><a class="hover:text-accent" href="#ventures">Ventures</a></li>
+        <li><a class="hover:text-accent" href="#skills">Skills</a></li>
+        <li><a class="hover:text-accent" href="#passions">Passions</a></li>
+        <li><a class="hover:text-accent" href="#contact">Contact</a></li>
+      </ul>
+      <button id="menu-btn" class="md:hidden p-2 -mr-2" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/></svg>
+      </button>
+    </nav>
+    <ul id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-3 text-gray-700 border-t border-gray-100 pt-3">
+      <li><a href="#about">About</a></li>
+      <li><a href="#ventures">Ventures</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#passions">Passions</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </header>
+
+  <main id="main">
+
+    <!-- ================= HERO ================= -->
+    <section id="home" class="relative min-h-screen flex items-center overflow-hidden">
+      <!-- Decorative SVG shapes (replace or remove freely) -->
+      <svg class="drift absolute right-[-120px] top-24 w-[420px] h-[420px] text-accent/10 hidden sm:block" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+        <circle cx="100" cy="100" r="98" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="100" cy="100" r="64" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="100" cy="100" r="30" fill="currentColor"/>
+      </svg>
+      <div class="max-w-5xl mx-auto px-6 pt-24 pb-16 relative">
+        <p class="reveal text-sm font-medium tracking-widest uppercase text-accent mb-6">Portfolio</p>
+        <h1 class="reveal text-5xl sm:text-7xl font-extrabold tracking-tight leading-[1.05]" style="transition-delay:.1s">
+          Muralikrishnan<br />Ravi<span class="text-accent">.</span>
+        </h1>
+        <!-- ONE-LINE IDENTITY: edit freely -->
+        <p class="reveal mt-8 text-lg sm:text-2xl text-gray-600 max-w-2xl" style="transition-delay:.2s">
+          Solution Architect <span class="text-accent">•</span> Founder <span class="text-accent">•</span> Digital Health Innovator
+        </p>
+        <div class="reveal mt-10 flex flex-wrap gap-4" style="transition-delay:.3s">
+          <a href="#ventures" class="px-6 py-3 rounded-full bg-accent text-white text-sm font-medium hover:bg-accent-dark transition">View ventures</a>
+          <a href="#contact" class="px-6 py-3 rounded-full border border-gray-300 text-sm font-medium hover:border-accent hover:text-accent transition">Get in touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section id="about" class="py-28 border-t border-gray-100">
+      <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-3 gap-12">
+        <div class="reveal">
+          <h2 class="text-sm font-semibold uppercase tracking-widest text-accent">About</h2>
+        </div>
+        <div class="reveal md:col-span-2 space-y-6 text-lg text-gray-700 leading-relaxed">
+          <p class="text-2xl text-ink font-medium leading-snug">
+            I design resilient technology and build ventures that make health, education and enterprise work better for people.
+          </p>
+          <!-- EDIT: replace with your own story and details -->
+          <p><strong class="text-ink">Background.</strong> A solution architect with years of experience turning complex business needs into scalable, secure and maintainable systems across cloud, data and AI.</p>
+          <p><strong class="text-ink">Mission.</strong> To use thoughtful engineering to widen access, to quality healthcare, to career opportunity and to dependable technology partnerships.</p>
+          <p><strong class="text-ink">Values.</strong> Clarity over complexity, ownership, honesty, and long-term thinking over quick wins.</p>
+          <p><strong class="text-ink">Philosophy.</strong> Great architecture is quiet: it removes friction, scales gracefully and lets teams move with confidence.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VENTURES & PROJECTS ================= -->
+    <section id="ventures" class="py-28 bg-gray-50/70 border-t border-gray-100">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="reveal text-sm font-semibold uppercase tracking-widest text-accent mb-4">Ventures &amp; Projects</h2>
+        <p class="reveal text-3xl sm:text-4xl font-bold tracking-tight max-w-2xl mb-14">Building at the intersection of technology, health and education.</p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+
+          <!-- Venture card template: duplicate to add more. Edit the Impact lines with your real results. -->
+          <article class="reveal bg-white rounded-2xl border border-gray-200 p-8 hover:border-accent/40 transition">
+            <div class="flex items-center justify-between mb-5">
+              <h3 class="text-xl font-semibold">Aathee.com</h3>
+              <span class="text-xs px-3 py-1 rounded-full bg-accent-soft text-accent">IT Consulting</span>
+            </div>
+            <p class="text-gray-600 mb-5">IT consulting and technology partnerships helping businesses architect, build and scale reliable digital solutions.</p>
+            <dl class="text-sm space-y-2">
+              <div><dt class="inline font-medium">Role:</dt> <dd class="inline text-gray-600">Founder &amp; Lead Architect</dd></div>
+              <div><dt class="inline font-medium">Impact:</dt> <dd class="inline text-gray-600">Connects organisations with the right technology partners and delivery expertise.</dd></div>
+              <div><dt class="inline font-medium">Stack:</dt> <dd class="inline text-gray-600">Cloud, microservices, DevOps, integrations</dd></div>
+            </dl>
+            <a href="https://aathee.com" target="_blank" rel="noopener" class="inline-block mt-6 text-sm font-medium text-accent hover:underline">Visit aathee.com →</a>
+          </article>
+
+          <article class="reveal bg-white rounded-2xl border border-gray-200 p-8 hover:border-accent/40 transition">
+            <div class="flex items-center justify-between mb-5">
+              <h3 class="text-xl font-semibold">Medippo</h3>
+              <span class="text-xs px-3 py-1 rounded-full bg-accent-soft text-accent">Digital Health</span>
+            </div>
+            <p class="text-gray-600 mb-5">A digital health platform that makes care more accessible, connected and patient-centred.</p>
+            <dl class="text-sm space-y-2">
+              <div><dt class="inline font-medium">Role:</dt> <dd class="inline text-gray-600">Founder &amp; Product Architect</dd></div>
+              <div><dt class="inline font-medium">Impact:</dt> <dd class="inline text-gray-600">Simplifies how patients and providers connect and share information.</dd></div>
+              <div><dt class="inline font-medium">Stack:</dt> <dd class="inline text-gray-600">Cloud-native APIs, secure data, AI-assisted workflows</dd></div>
+            </dl>
+          </article>
+
+          <article class="reveal bg-white rounded-2xl border border-gray-200 p-8 hover:border-accent/40 transition">
+            <div class="flex items-center justify-between mb-5">
+              <h3 class="text-xl font-semibold">YFreshy</h3>
+              <span class="text-xs px-3 py-1 rounded-full bg-accent-soft text-accent">EdTech</span>
+            </div>
+            <p class="text-gray-600 mb-5">A student certification and job ecosystem that bridges the gap between learning and employment.</p>
+            <dl class="text-sm space-y-2">
+              <div><dt class="inline font-medium">Role:</dt> <dd class="inline text-gray-600">Founder &amp; Strategy Lead</dd></div>
+              <div><dt class="inline font-medium">Impact:</dt> <dd class="inline text-gray-600">Helps fresh graduates prove skills and reach employers.</dd></div>
+              <div><dt class="inline font-medium">Stack:</dt> <dd class="inline text-gray-600">Web platform, assessments, credential verification</dd></div>
+            </dl>
+          </article>
+
+          <article class="reveal bg-white rounded-2xl border border-gray-200 p-8 hover:border-accent/40 transition">
+            <div class="flex items-center justify-between mb-5">
+              <h3 class="text-xl font-semibold">Personal &amp; Freelance</h3>
+              <span class="text-xs px-3 py-1 rounded-full bg-accent-soft text-accent">Selected Work</span>
+            </div>
+            <p class="text-gray-600 mb-5">Architecture reviews, prototypes and open-source experiments built for clients and out of curiosity.</p>
+            <dl class="text-sm space-y-2">
+              <div><dt class="inline font-medium">Role:</dt> <dd class="inline text-gray-600">Architect &amp; Engineer</dd></div>
+              <div><dt class="inline font-medium">Impact:</dt> <dd class="inline text-gray-600">Practical, well-documented solutions delivered end to end.</dd></div>
+              <div><dt class="inline font-medium">Stack:</dt> <dd class="inline text-gray-600">Varies by project</dd></div>
+            </dl>
+            <a href="https://github.com/mrmuravi" target="_blank" rel="noopener" class="inline-block mt-6 text-sm font-medium text-accent hover:underline">Browse on GitHub →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SKILLS ================= -->
+    <section id="skills" class="py-28 border-t border-gray-100">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="reveal text-sm font-semibold uppercase tracking-widest text-accent mb-14">Skills &amp; Expertise</h2>
+        <!-- EDIT: add or remove skills inside each list -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12">
+          <div class="reveal">
+            <h3 class="font-semibold text-lg mb-4">Architecture &amp; Engineering</h3>
+            <ul class="space-y-2 text-gray-600">
+              <li>Solution &amp; enterprise architecture</li><li>Microservices &amp; API design</li><li>Event-driven systems</li><li>Security &amp; compliance by design</li>
+            </ul>
+          </div>
+          <div class="reveal">
+            <h3 class="font-semibold text-lg mb-4">Cloud &amp; DevOps</h3>
+            <ul class="space-y-2 text-gray-600">
+              <li>AWS / Azure / GCP</li><li>CI/CD &amp; infrastructure as code</li><li>Containers &amp; Kubernetes</li><li>Observability &amp; reliability</li>
+            </ul>
+          </div>
+          <div class="reveal">
+            <h3 class="font-semibold text-lg mb-4">Product Strategy</h3>
+            <ul class="space-y-2 text-gray-600">
+              <li>Roadmapping &amp; MVP definition</li><li>Market &amp; user discovery</li><li>Go-to-market for new ventures</li><li>Technology partnerships</li>
+            </ul>
+          </div>
+          <div class="reveal">
+            <h3 class="font-semibold text-lg mb-4">AI / ML</h3>
+            <ul class="space-y-2 text-gray-600">
+              <li>Applied machine learning</li><li>LLM &amp; generative AI integration</li><li>Data pipelines</li><li>Responsible AI in healthcare</li>
+            </ul>
+          </div>
+          <div class="reveal">
+            <h3 class="font-semibold text-lg mb-4">Leadership &amp; Mentoring</h3>
+            <ul class="space-y-2 text-gray-600">
+              <li>Technical team leadership</li><li>Mentoring engineers &amp; students</li><li>Stakeholder communication</li><li>Architecture governance</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PASSIONS ================= -->
+    <section id="passions" class="py-28 bg-gray-50/70 border-t border-gray-100">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="reveal text-sm font-semibold uppercase tracking-widest text-accent mb-14">Beyond Work</h2>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+          <!-- Each passion: inline SVG icon + label. Swap for photos if desired. -->
+          <div class="reveal bg-white rounded-2xl border border-gray-200 p-6 text-center">
+            <svg class="w-8 h-8 mx-auto text-accent mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>
+            <p class="font-medium">Travel</p>
+          </div>
+          <div class="reveal bg-white rounded-2xl border border-gray-200 p-6 text-center">
+            <svg class="w-8 h-8 mx-auto text-accent mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="9" r="2"/><circle cx="10.5" cy="5.5" r="2"/><circle cx="15.5" cy="5.5" r="2"/><circle cx="19" cy="9" r="2"/><path d="M8 18c0-3 2-6 4-6s4 3 4 6c0 2-2 2-4 1-2 1-4 1-4-1z"/></svg>
+            <p class="font-medium">Pets</p>
+          </div>
+          <div class="reveal bg-white rounded-2xl border border-gray-200 p-6 text-center">
+            <svg class="w-8 h-8 mx-auto text-accent mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16l-1 4z"/><path d="M14 6l3 3"/></svg>
+            <p class="font-medium">Design</p>
+          </div>
+          <div class="reveal bg-white rounded-2xl border border-gray-200 p-6 text-center">
+            <svg class="w-8 h-8 mx-auto text-accent mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11l3 3v13H5z"/><path d="M8 10h8M8 14h8M8 17h5"/></svg>
+            <p class="font-medium">Writing</p>
+          </div>
+          <div class="reveal bg-white rounded-2xl border border-gray-200 p-6 text-center col-span-2 md:col-span-1">
+            <svg class="w-8 h-8 mx-auto text-accent mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/></svg>
+            <p class="font-medium">Tech exploration</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section id="contact" class="py-28 border-t border-gray-100">
+      <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-14">
+        <div class="reveal">
+          <h2 class="text-sm font-semibold uppercase tracking-widest text-accent mb-4">Contact</h2>
+          <p class="text-3xl sm:text-4xl font-bold tracking-tight mb-6">Let’s build something meaningful.</p>
+          <p class="text-gray-600 mb-8">Open to consulting, partnerships and conversations about technology and digital health.</p>
+          <a href="mailto:contact@muralikrishnanravi.com" class="text-lg font-medium text-accent hover:underline">contact@muralikrishnanravi.com</a>
+          <!-- SOCIAL LINKS: update URLs -->
+          <ul class="mt-8 flex gap-5 text-sm text-gray-600">
+            <li><a class="hover:text-accent underline-offset-4 hover:underline" href="https://www.linkedin.com/in/muralikrishnanravi" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a class="hover:text-accent underline-offset-4 hover:underline" href="https://github.com/mrmuravi" target="_blank" rel="noopener">GitHub</a></li>
+          </ul>
+        </div>
+
+        <!-- Optional contact form. GitHub Pages has no backend, so it opens the visitor's email client via mailto.
+             To use a hosted service (Formspree, Web3Forms), set the form's action and remove the JS handler. -->
+        <form id="contact-form" class="reveal space-y-4" aria-label="Contact form">
+          <div>
+            <label for="name" class="block text-sm font-medium mb-1">Name</label>
+            <input id="name" name="name" required class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent" />
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium mb-1">Email</label>
+            <input id="email" name="email" type="email" required class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent" />
+          </div>
+          <div>
+            <label for="message" class="block text-sm font-medium mb-1">Message</label>
+            <textarea id="message" name="message" rows="4" required class="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent"></textarea>
+          </div>
+          <button type="submit" class="px-6 py-3 rounded-full bg-accent text-white text-sm font-medium hover:bg-accent-dark transition">Send message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-gray-100 py-10 text-center text-sm text-gray-500">
+    © <span id="year">2026</span> Muralikrishnan Ravi. All rights reserved.
+  </footer>
+
+  <!-- ================= MINIMAL JS ================= -->
+  <script>
+    // Mobile menu toggle
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn.addEventListener('click', () => {
+      const open = menu.classList.toggle('hidden') === false;
+      btn.setAttribute('aria-expanded', open);
+    });
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menu.classList.add('hidden'); btn.setAttribute('aria-expanded', false); }));
+
+    // Fade-in on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Contact form -> mailto (no backend required)
+    document.getElementById('contact-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const f = new FormData(e.target);
+      const subject = encodeURIComponent('Portfolio enquiry from ' + f.get('name'));
+      const body = encodeURIComponent(f.get('message') + '\n\n— ' + f.get('name') + ' (' + f.get('email') + ')');
+      window.location.href = 'mailto:contact@muralikrishnanravi.com?subject=' + subject + '&body=' + body;
+    });
+  </script>
+</body>
+</html>
