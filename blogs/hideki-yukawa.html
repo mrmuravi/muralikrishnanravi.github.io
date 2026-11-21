@@ -35,6 +35,11 @@
     .callout { background: #eff3ff; border-left: 3px solid #1e3a8a; border-radius: 0 12px 12px 0; padding: 20px 24px; margin: 32px 0; }
     .sources { border-top: 1px solid #e5e7eb; margin-top: 48px; font-size: 14px; line-height: 1.8; }
     .sources li { margin-bottom: 12px; }
+    .share-actions { display: flex; align-items: center; gap: 10px; margin: -30px 0 44px; }
+    .share-actions button, .share-actions a { width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #e5e7eb; border-radius: 50%; background: #fff; color: #4b5563; text-decoration: none; cursor: pointer; }
+    .share-actions button:hover, .share-actions a:hover { border-color: #1e3a8a; color: #1e3a8a; background: #eff3ff; }
+    .share-actions svg { width: 17px; height: 17px; }
+    .share-status { font-size: 12px; color: #6b7280; }
     footer { border-top: 1px solid #f3f4f6; padding: 32px 24px; text-align: center; font-size: 14px; color: #6b7280; }
     .skip { position: absolute; left: -9999px; }
     .skip:focus { left: 16px; top: 16px; padding: 12px; background: white; }
@@ -56,6 +61,11 @@
         <p class="intro">Before a particle could be seen in an experiment, it had to be imagined. Hideki Yukawa helped show how a question about the atomic nucleus could point to something entirely new.</p>
         <p class="meta">By Muralikrishnan Ravi · <time datetime="2026-11-03">3 November 2026</time></p>
       </header>
+      <div class="share-actions" aria-label="Share this article">
+        <button type="button" class="share-button" aria-label="Share article" title="Share"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.7 10.7 6.6-4.1M8.7 13.3l6.6 4.1"/></svg></button>
+        <a href="mailto:?subject=Hideki%20Yukawa%3A%20A%20Forgotten%20Physicist&amp;body=https%3A%2F%2Fmuralikrishnanravi.github.io%2Fblogs%2Fhideki-yukawa.html" aria-label="Share by email" title="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></a>
+        <span class="share-status" role="status" aria-live="polite"></span>
+      </div>
       <div class="body">
         <p>Some names become shorthand for physics: Einstein, Newton, Curie. Yukawa deserves a place in a curious reader's vocabulary too. Calling him “forgotten” is an invitation to rediscover him, rather than a claim that physicists have overlooked his work. His name lives on in research, teaching and an institute devoted to theoretical physics.</p>
 
@@ -93,6 +103,20 @@
     </article>
     <p style="margin-top:40px"><a href="../index.html#blogs">&larr; Back to all blogs</a></p>
   </main>
+  <script>
+    document.querySelector('.share-button').addEventListener('click', async () => {
+      const status = document.querySelector('.share-status');
+      const data = { title: document.title, url: window.location.href };
+      if (navigator.share) {
+        try { await navigator.share(data); } catch (error) { if (error.name !== 'AbortError') status.textContent = 'Unable to share'; }
+      } else if (navigator.clipboard) {
+        await navigator.clipboard.writeText(window.location.href);
+        status.textContent = 'Link copied';
+      } else {
+        status.textContent = window.location.href;
+      }
+    });
+  </script>
   <footer>&copy; 2026 Muralikrishnan Ravi. All rights reserved.</footer>
 </body>
 </html>

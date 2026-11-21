@@ -33,6 +33,11 @@
     .body { font-size: 18px; line-height: 1.85; color: #374151; }
     h2 { font-size: 25px; line-height: 1.35; letter-spacing: -.025em; color: #1f2328; margin: 42px 0 16px; }
     strong { color: #1f2328; }
+    .share-actions { display: flex; align-items: center; gap: 10px; margin: -30px 0 44px; }
+    .share-actions button, .share-actions a { width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #e5e7eb; border-radius: 50%; background: #fff; color: #4b5563; text-decoration: none; cursor: pointer; }
+    .share-actions button:hover, .share-actions a:hover { border-color: #1e3a8a; color: #1e3a8a; background: #eff3ff; }
+    .share-actions svg { width: 17px; height: 17px; }
+    .share-status { font-size: 12px; color: #6b7280; }
     figure { margin: 32px 0 48px; }
     figure img { width: 100%; height: auto; max-height: 620px; object-fit: cover; border-radius: 12px; }
     figcaption { margin-top: 10px; font-size: 12px; line-height: 1.6; color: #6b7280; }
@@ -61,6 +66,11 @@
         <img src="../assets/st-peters-basilica-dome.jpg" alt="The dome of St. Peter’s Basilica in Rome" />
         <figcaption>Photo: <a href="https://commons.wikimedia.org/wiki/User:Myrabella" rel="noopener">Myrabella</a> / <a href="https://commons.wikimedia.org/wiki/File:Basilique_Saint-Pierre_Vatican_dome.jpg" rel="noopener">Wikimedia Commons</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="noopener">CC BY-SA 3.0</a>.</figcaption>
       </figure>
+      <div class="share-actions" aria-label="Share this article">
+        <button type="button" class="share-button" aria-label="Share article" title="Share"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.7 10.7 6.6-4.1M8.7 13.3l6.6 4.1"/></svg></button>
+        <a href="mailto:?subject=Michelangelo%E2%80%99s%20Architectural%20Feat%20of%20St.%20Peter%E2%80%99s%20Basilica&amp;body=https%3A%2F%2Fmuralikrishnanravi.github.io%2Fblogs%2Fst-peters-basilica-software-architecture.html" aria-label="Share by email" title="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></a>
+        <span class="share-status" role="status" aria-live="polite"></span>
+      </div>
       <div class="body">
         <p>In 1546, at age 71, Michelangelo took over St. Peter’s Basilica in Rome. The project had already dragged on for 40 years across multiple architects, accumulating sprawling, conflicting layouts and structural compromises.</p>
 
@@ -93,6 +103,20 @@
     </article>
     <p style="margin-top:40px"><a href="../index.html#blogs">&larr; Back to all blogs</a></p>
   </main>
+  <script>
+    document.querySelector('.share-button').addEventListener('click', async () => {
+      const status = document.querySelector('.share-status');
+      const data = { title: document.title, url: window.location.href };
+      if (navigator.share) {
+        try { await navigator.share(data); } catch (error) { if (error.name !== 'AbortError') status.textContent = 'Unable to share'; }
+      } else if (navigator.clipboard) {
+        await navigator.clipboard.writeText(window.location.href);
+        status.textContent = 'Link copied';
+      } else {
+        status.textContent = window.location.href;
+      }
+    });
+  </script>
   <footer>&copy; 2026 Muralikrishnan Ravi. All rights reserved.</footer>
 </body>
 </html>

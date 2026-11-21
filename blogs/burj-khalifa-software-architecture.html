@@ -31,6 +31,11 @@
     .meta { font-size: 14px; color: #6b7280; margin: 24px 0 48px; }
     .body { font-size: 18px; line-height: 1.85; color: #374151; }
     h2 { font-size: 25px; line-height: 1.35; letter-spacing: -.025em; color: #1f2328; margin: 42px 0 16px; }
+    .share-actions { display: flex; align-items: center; gap: 10px; margin: -30px 0 44px; }
+    .share-actions button, .share-actions a { width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #e5e7eb; border-radius: 50%; background: #fff; color: #4b5563; text-decoration: none; cursor: pointer; }
+    .share-actions button:hover, .share-actions a:hover { border-color: #1e3a8a; color: #1e3a8a; background: #eff3ff; }
+    .share-actions svg { width: 17px; height: 17px; }
+    .share-status { font-size: 12px; color: #6b7280; }
     footer { border-top: 1px solid #f3f4f6; padding: 32px 24px; text-align: center; font-size: 14px; color: #6b7280; }
     .skip { position: absolute; left: -9999px; }
     .skip:focus { left: 16px; top: 16px; padding: 12px; background: white; }
@@ -51,6 +56,13 @@
         <h1 id="post-title">4 Software Architecture Lessons from the Burj Khalifa</h1>
         <p class="meta">By Muralikrishnan Ravi · <time datetime="2026-11-20">20 November 2026</time></p>
       </header>
+      <div class="share-actions" aria-label="Share this article">
+        <button type="button" class="share-button" aria-label="Share article" title="Share">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.7 10.7 6.6-4.1M8.7 13.3l6.6 4.1"/></svg>
+        </button>
+        <a href="mailto:?subject=4%20Software%20Architecture%20Lessons%20from%20the%20Burj%20Khalifa&amp;body=https%3A%2F%2Fmuralikrishnanravi.github.io%2Fblogs%2Fburj-khalifa-software-architecture.html" aria-label="Share by email" title="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></a>
+        <span class="share-status" role="status" aria-live="polite"></span>
+      </div>
       <div class="body">
         <p>Today I stood at the base of the Burj Khalifa in Dubai, looking up 828 meters at one of the world's most ambitious engineering feats.</p>
 
@@ -79,6 +91,20 @@
     </article>
     <p style="margin-top:40px"><a href="../index.html#blogs">&larr; Back to all blogs</a></p>
   </main>
+  <script>
+    document.querySelector('.share-button').addEventListener('click', async () => {
+      const status = document.querySelector('.share-status');
+      const data = { title: document.title, url: window.location.href };
+      if (navigator.share) {
+        try { await navigator.share(data); } catch (error) { if (error.name !== 'AbortError') status.textContent = 'Unable to share'; }
+      } else if (navigator.clipboard) {
+        await navigator.clipboard.writeText(window.location.href);
+        status.textContent = 'Link copied';
+      } else {
+        status.textContent = window.location.href;
+      }
+    });
+  </script>
   <footer>&copy; 2026 Muralikrishnan Ravi. All rights reserved.</footer>
 </body>
 </html>
