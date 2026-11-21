@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Understanding Architecture Methods, Principles and Patterns | Muralikrishnan Ravi</title>
+  <meta name="description" content="A practical learning guide to OOAD, object-oriented principles, GoF patterns, enterprise patterns, SOA, DDD and distributed architecture." />
+  <link rel="canonical" href="https://muralikrishnanravi.github.io/learning/architecture-methods-principles-patterns.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Understanding Architecture Methods, Principles and Patterns" />
+  <meta property="og:description" content="OOAD, SOLID, GoF, SOA, domain-driven design and modern distributed architecture patterns." />
+  <meta property="og:url" content="https://muralikrishnanravi.github.io/learning/architecture-methods-principles-patterns.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Inter, system-ui, sans-serif; color: #1f2328; background: #fff; }
+    a { color: #1e3a8a; text-underline-offset: 4px; }
+    a:hover { color: #172554; }
+    a:focus-visible { outline: 2px solid #1e3a8a; outline-offset: 5px; }
+    nav { max-width: 1024px; margin: auto; padding: 22px 24px; display: flex; justify-content: space-between; gap: 24px; }
+    nav a { text-decoration: none; font-size: 14px; }
+    .brand { font-weight: 600; color: #1f2328; }
+    body > header { border-bottom: 1px solid #f3f4f6; }
+    main { max-width: 800px; margin: auto; padding: 72px 24px 80px; }
+    .eyebrow { color: #1e3a8a; text-transform: uppercase; letter-spacing: .15em; font-size: 12px; font-weight: 600; }
+    h1 { font-size: clamp(2.4rem, 6vw, 3.8rem); letter-spacing: -.045em; line-height: 1.12; margin: 20px 0; }
+    .meta { font-size: 14px; color: #6b7280; margin: 24px 0 48px; }
+    .body { font-size: 18px; line-height: 1.85; color: #374151; }
+    h2 { font-size: 25px; line-height: 1.35; letter-spacing: -.025em; color: #1f2328; margin: 42px 0 16px; }
+    h3 { font-size: 20px; line-height: 1.4; color: #1f2328; margin: 28px 0 10px; }
+    strong { color: #1f2328; }
+    ul, ol { padding-left: 24px; }
+    li { margin: 8px 0; }
+    code { background: #f3f4f6; border-radius: 4px; padding: 2px 5px; font-size: .9em; }
+    table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 16px; }
+    th, td { border: 1px solid #e5e7eb; padding: 12px; text-align: left; vertical-align: top; }
+    th { background: #f9fafb; color: #1f2328; }
+    .callout { background: #eff3ff; border-left: 3px solid #1e3a8a; border-radius: 0 12px 12px 0; padding: 20px 24px; margin: 32px 0; }
+    .share-actions { display: flex; align-items: center; gap: 10px; margin: -30px 0 44px; }
+    .share-actions button, .share-actions a { width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #e5e7eb; border-radius: 50%; background: #fff; color: #4b5563; text-decoration: none; cursor: pointer; }
+    .share-actions button:hover, .share-actions a:hover { border-color: #1e3a8a; color: #1e3a8a; background: #eff3ff; }
+    .share-actions svg { width: 17px; height: 17px; }
+    .share-status { font-size: 12px; color: #6b7280; }
+    footer { border-top: 1px solid #f3f4f6; padding: 32px 24px; text-align: center; font-size: 14px; color: #6b7280; }
+    .skip { position: absolute; left: -9999px; }
+    .skip:focus { left: 16px; top: 16px; padding: 12px; background: white; }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to article</a>
+  <header>
+    <nav aria-label="Primary">
+      <a class="brand" href="../index.html">M<span style="color:#1e3a8a">.</span>Ravi</a>
+      <a href="../index.html#learning">&larr; Learning &amp; Development</a>
+    </nav>
+  </header>
+  <main id="main">
+    <article aria-labelledby="post-title">
+      <header>
+        <p class="eyebrow">Architecture Learning</p>
+        <h1 id="post-title">Understanding Architecture Methods, Principles and Patterns</h1>
+        <p class="meta">By Muralikrishnan Ravi · <time datetime="2026-11-21">21 November 2026</time></p>
+      </header>
+      <div class="share-actions" aria-label="Share this article">
+        <button type="button" class="share-button" aria-label="Share article" title="Share"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.7 10.7 6.6-4.1M8.7 13.3l6.6 4.1"/></svg></button>
+        <a href="mailto:?subject=Understanding%20Architecture%20Methods%2C%20Principles%20and%20Patterns&amp;body=https%3A%2F%2Fmuralikrishnanravi.github.io%2Flearning%2Farchitecture-methods-principles-patterns.html" aria-label="Share by email" title="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></a>
+        <span class="share-status" role="status" aria-live="polite"></span>
+      </div>
+      <div class="body">
+        <p>Software architecture is not one diagram or one technology stack. It is the discipline of making long-lived decisions about structure, responsibility, change, data, communication, security and failure. Useful architecture work connects business intent to implementation through repeatable methods and patterns.</p>
+
+        <div class="callout">
+          <strong>Core distinction:</strong> principles describe qualities we should protect, patterns describe proven structures that achieve those qualities, and methods describe how teams discover and validate the resulting design.
+        </div>
+
+        <h2>1. OOAD: Object-Oriented Analysis and Design</h2>
+        <p><strong>Object-Oriented Analysis and Design (OOAD)</strong> helps model a problem and translate that model into maintainable software structures. It moves from the language of the business toward executable concepts.</p>
+
+        <h3>Typical OOAD lifecycle</h3>
+        <ol>
+          <li><strong>Identify actors and use cases.</strong> Capture who acts on the system and which outcomes they require.</li>
+          <li><strong>Build a domain model.</strong> Identify entities, value objects, responsibilities and relationships.</li>
+          <li><strong>Apply analysis stereotypes.</strong> Separate boundary, control and entity responsibilities when useful.</li>
+          <li><strong>Create behavioral models.</strong> Use sequence, communication and state diagrams to examine collaboration and lifecycle behavior.</li>
+          <li><strong>Allocate responsibilities.</strong> Assign behavior to classes or components so that information and change remain cohesive.</li>
+          <li><strong>Validate with scenarios.</strong> Test the design against normal, exceptional and high-load flows.</li>
+        </ol>
+
+        <h3>Essential object-oriented concepts</h3>
+        <ul>
+          <li><strong>Encapsulation:</strong> expose an intention, hide implementation details and protect invariants.</li>
+          <li><strong>Abstraction:</strong> retain the essential behavior while omitting irrelevant detail.</li>
+          <li><strong>Inheritance:</strong> reuse or specialize behavior, but prefer composition when the relationship is not genuinely “is-a.”</li>
+          <li><strong>Polymorphism:</strong> allow interchangeable implementations behind a stable contract.</li>
+          <li><strong>Collaboration:</strong> design small objects and services that work together through explicit contracts.</li>
+        </ul>
+
+        <h2>2. SOLID and Core Design Principles</h2>
+        <p>Principles guide decisions when no exact pattern is an obvious fit. SOLID is a useful baseline, though it should be applied pragmatically rather than mechanically.</p>
+
+        <table>
+          <thead>
+            <tr><th>Principle</th><th>Meaning</th><th>Architectural intent</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Single Responsibility</td><td>A type or module has one coherent reason to change.</td><td>Reduce coupled change.</td></tr>
+            <tr><td>Open/Closed</td><td>Extend behavior without modifying stable implementation.</td><td>Support variation and evolution.</td></tr>
+            <tr><td>Liskov Substitution</td><td>A subtype must preserve the contract of its base type.</td><td>Prevent polymorphism surprises.</td></tr>
+            <tr><td>Interface Segregation</td><td>Prefer focused interfaces over broad ones.</td><td>Limit dependency and implementation burden.</td></tr>
+            <tr><td>Dependency Inversion</td><td>Depend on abstractions, not implementation details.</td><td>Keep policy independent of infrastructure.</td></tr>
+          </tbody>
+        </table>
+
+        <p>Additional principles include <strong>separation of concerns</strong>, <strong>information hiding</strong>, <strong>loose coupling</strong>, <strong>high cohesion</strong>, <strong>least privilege</strong>, <strong>fail-fast</strong>, <strong>idempotency</strong>, <strong>defense in depth</strong>, and <strong>design for observability</strong>. Together they become more valuable when translated into measurable constraints such as latency, availability, auditability and team ownership.</p>
+
+        <h2>3. Gang of Four (GoF) Patterns</h2>
+        <p>The 1994 Gang of Four catalog describes reusable object-level solutions. The patterns are arranged by intent:</p>
+
+        <h3>Creational patterns</h3>
+        <ul>
+          <li><strong>Factory Method / Abstract Factory:</strong> choose or assemble implementations while hiding construction details.</li>
+          <li><strong>Builder:</strong> construct complex objects in controlled steps.</li>
+          <li><strong>Prototype:</strong> create variants from a well-defined template or clone.</li>
+          <li><strong>Singleton:</strong> provide one shared instance; use sparingly because global state complicates testing and scaling.</li>
+        </ul>
+
+        <h3>Structural patterns</h3>
+        <ul>
+          <li><strong>Adapter:</strong> translate one contract into another.</li>
+          <li><strong>Bridge:</strong> separate abstraction from implementation when both vary independently.</li>
+          <li><strong>Composite:</strong> treat individual and grouped objects uniformly.</li>
+          <li><strong>Decorator:</strong> add behavior without changing the original contract.</li>
+          <li><strong>Facade:</strong> provide a simpler entry point over a complex subsystem.</li>
+          <li><strong>Proxy:</strong> control or enrich access to another object, often for security, caching or remote calls.</li>
+          <li><strong>Flyweight:</strong> share repeated state to reduce memory cost.</li>
+        </ul>
+
+        <h3>Behavioral patterns</h3>
+        <ul>
+          <li><strong>Strategy:</strong> swap algorithms behind a common contract.</li>
+          <li><strong>Observer:</strong> notify interested components of state change.</li>
+          <li><strong>Template Method:</strong> fix an algorithm's sequence while deferring steps.</li>
+          <li><strong>Command:</strong> represent an action as an object for queues, logging or undo.</li>
+          <li><strong>State:</strong> delegate behavior according to a lifecycle state.</li>
+          <li><strong>Chain of Responsibility:</strong> pass a request through ordered handlers.</li>
+          <li><strong>Mediator:</strong> coordinate interactions through a central abstraction.</li>
+        </ul>
+
+        <p>A GoF pattern is a vocabulary, not a requirement to apply it everywhere. If a simple method or configuration is clearer, do not introduce a pattern merely to demonstrate knowledge.</p>
+
+        <h2>4. Enterprise and Integration Patterns</h2>
+        <p>At system scale, patterns concern communication and coordination across components. Enterprise Integration Patterns provide structures such as:</p>
+        <ul>
+          <li><strong>Message channels and endpoints:</strong> decouple senders and receivers.</li>
+          <li><strong>Publish-subscribe:</strong> allow multiple consumers to react to an event.</li>
+          <li><strong>Content-based routing:</strong> direct a message according to its properties.</li>
+          <li><strong>Message transformation:</strong> translate incompatible contracts at an integration boundary.</li>
+          <li><strong>Aggregator and scatter-gather:</strong> coordinate split processing and merge results.</li>
+          <li><strong>Outbox and inbox:</strong> improve consistency between database changes and asynchronous messaging.</li>
+          <li><strong>Circuit breaker and retry with backoff:</strong> contain failure and avoid overwhelming unhealthy dependencies.</li>
+          <li><strong>Idempotent consumer:</strong> safely handle duplicate delivery.</li>
+        </ul>
+
+        <h2>5. Service-Oriented Architecture (SOA)</h2>
+        <p><strong>Service-Oriented Architecture (SOA)</strong> organizes capabilities as reusable services with explicit contracts. It emphasizes interoperability, discoverability and reuse across organizational boundaries. An enterprise service bus may provide routing and transformation, but it can also become a central bottleneck or complex dependency if not governed carefully.</p>
+
+        <p>SOA remains relevant when teams need shared capabilities across heterogeneous platforms. Modern distributed architecture often combines SOA principles with API gateways, REST or asynchronous messaging, domain-bounded services and cloud infrastructure. SOA should not be confused with web services alone.</p>
+
+        <h2>6. Domain-Driven Design (DDD)</h2>
+        <p>Domain-Driven Design connects architecture to the business domain. It helps teams decide which concepts belong together and where boundaries should exist.</p>
+        <ul>
+          <li><strong>Bounded context:</strong> an explicit area in which a domain model has consistent meaning.</li>
+          <li><strong>Ubiquitous language:</strong> shared terms used consistently by domain experts, product teams and developers.</li>
+          <li><strong>Entity:</strong> an object identified by continuity, such as an Account or Order.</li>
+          <li><strong>Value object:</strong> a defined concept with no identity, such as Money or Address.</li>
+          <li><strong>Aggregate:</strong> a consistency boundary containing an aggregate root and related objects.</li>
+          <li><strong>Domain event:</strong> a fact that the domain considers significant, such as <code>PaymentCaptured</code>.</li>
+          <li><strong>Context mapping:</strong> documents how bounded contexts collaborate through upstream/downstream, ACL or shared-model relationships.</li>
+        </ul>
+
+        <h2>7. Modern Architectural Structures</h2>
+        <table>
+          <thead>
+            <tr><th>Structure</th><th>Purpose</th><th>Primary risk</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Layered architecture</td><td>Separate presentation, application, domain and infrastructure concerns.</td><td>Unnecessary layers or bypassed boundaries.</td></tr>
+            <tr><td>Hexagonal / Ports and Adapters</td><td>Keep core behavior independent of delivery and infrastructure mechanisms.</td><td>Over-abstraction for a small, stable system.</td></tr>
+            <tr><td>Clean architecture</td><td>Express business rules independently of frameworks and external systems.</td><td>Leaking details through broad abstractions.</td></tr>
+            <tr><td>Microservices</td><td>Deploy and scale independently owned capabilities.</td><td>Distributed latency, partial failure and operational complexity.</td></tr>
+            <tr><td>Event-driven architecture</td><td>Decouple producers and consumers through facts or commands.</td><td>Harder tracing and eventual consistency.</td></tr>
+            <tr><td>CQRS</td><td>Separate write models and read models when optimization requirements differ.</td><td>Synchronization complexity and duplicate data.</td></tr>
+          </tbody>
+        </table>
+
+        <h2>8. A Practical Architecture Decision Flow</h2>
+        <ol>
+          <li><strong>Frame the problem.</strong> Define the business outcome, stakeholders and constraints.</li>
+          <li><strong>Identify quality attributes.</strong> Rank availability, latency, security, auditability, scalability and time-to-change.</li>
+          <li><strong>Set boundaries.</strong> Separate domains, responsibilities and trust zones.</li>
+          <li><strong>Evaluate options.</strong> Use trade-off analysis rather than selecting the familiar technology.</li>
+          <li><strong>Model critical flows.</strong> Examine happy paths, failures, retries, concurrency and data ownership.</li>
+          <li><strong>Document decisions.</strong> Record context, decision, alternatives and consequences in Architecture Decision Records (ADRs).</li>
+          <li><strong>Validate continuously.</strong> Use tests, observability, architecture fitness functions and operational evidence.</li>
+        </ol>
+
+        <h2>9. How the Approaches Fit Together</h2>
+        <p>OOAD helps model objects and behavior. SOLID and GoF patterns improve structure within code. DDD identifies meaningful domain boundaries. SOA and integration patterns coordinate capabilities across organizational or technological boundaries. Enterprise architecture aligns those choices with strategy, standards and governance.</p>
+
+        <p>None of these methods should be used as a checklist for diagrams or naming conventions. The goal is to make change safer, responsibilities clearer, system behavior understandable and failure modes manageable.</p>
+
+        <p class="callout"><strong>Practical rule:</strong> start with the smallest model that explains the problem, add patterns only when they resolve a real force, and select technologies only after quality attributes and ownership boundaries are clear.</p>
+
+        <p>#SoftwareArchitecture #OOAD #SOLID #GoF #SOA #DDD #SystemDesign #ArchitecturePatterns #EngineeringLeadership</p>
+      </div>
+    </article>
+    <p style="margin-top:40px"><a href="../index.html#learning">&larr; Back to Learning &amp; Development</a></p>
+  </main>
+  <script>
+    document.querySelector('.share-button').addEventListener('click', async () => {
+      const status = document.querySelector('.share-status');
+      const data = { title: document.title, url: window.location.href };
+      if (navigator.share) {
+        try { await navigator.share(data); } catch (error) { if (error.name !== 'AbortError') status.textContent = 'Unable to share'; }
+      } else if (navigator.clipboard) {
+        await navigator.clipboard.writeText(window.location.href);
+        status.textContent = 'Link copied';
+      } else {
+        status.textContent = window.location.href;
+      }
+    });
+  </script>
+  <footer>&copy; 2026 Muralikrishnan Ravi. All rights reserved.</footer>
+</body>
+</html>
