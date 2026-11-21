@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Michelangelo’s Architectural Feat: St. Peter’s Basilica Dome for Modern Software Architecture | Muralikrishnan Ravi</title>
+  <meta name="description" content="Timeless architecture lessons from Michelangelo’s St. Peter’s Basilica dome and their applications to modern software and enterprise architecture." />
+  <link rel="canonical" href="https://muralikrishnanravi.github.io/blogs/st-peters-basilica-software-architecture.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Michelangelo’s Architectural Feat: A Case Study of St. Peter’s Basilica Dome for Modern Software Architecture" />
+  <meta property="og:description" content="Four timeless lessons from St. Peter’s Basilica that apply directly to modern software and enterprise architecture." />
+  <meta property="og:url" content="https://muralikrishnanravi.github.io/blogs/st-peters-basilica-software-architecture.html" />
+  <meta property="og:image" content="https://muralikrishnanravi.github.io/assets/st-peters-basilica-dome.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Inter, system-ui, sans-serif; color: #1f2328; background: #fff; }
+    a { color: #1e3a8a; text-underline-offset: 4px; }
+    a:hover { color: #172554; }
+    a:focus-visible { outline: 2px solid #1e3a8a; outline-offset: 5px; }
+    nav { max-width: 1024px; margin: auto; padding: 22px 24px; display: flex; justify-content: space-between; gap: 24px; }
+    nav a { text-decoration: none; font-size: 14px; }
+    .brand { font-weight: 600; color: #1f2328; }
+    body > header { border-bottom: 1px solid #f3f4f6; }
+    main { max-width: 760px; margin: auto; padding: 72px 24px 80px; }
+    .eyebrow { color: #1e3a8a; text-transform: uppercase; letter-spacing: .15em; font-size: 12px; font-weight: 600; }
+    h1 { font-size: clamp(2.4rem, 6vw, 3.8rem); letter-spacing: -.045em; line-height: 1.12; margin: 20px 0; }
+    .meta { font-size: 14px; color: #6b7280; margin: 24px 0 48px; }
+    .body { font-size: 18px; line-height: 1.85; color: #374151; }
+    h2 { font-size: 25px; line-height: 1.35; letter-spacing: -.025em; color: #1f2328; margin: 42px 0 16px; }
+    strong { color: #1f2328; }
+    figure { margin: 32px 0 48px; }
+    figure img { width: 100%; height: auto; max-height: 620px; object-fit: cover; border-radius: 12px; }
+    figcaption { margin-top: 10px; font-size: 12px; line-height: 1.6; color: #6b7280; }
+    figcaption a { color: #6b7280; }
+    footer { border-top: 1px solid #f3f4f6; padding: 32px 24px; text-align: center; font-size: 14px; color: #6b7280; }
+    .skip { position: absolute; left: -9999px; }
+    .skip:focus { left: 16px; top: 16px; padding: 12px; background: white; }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to article</a>
+  <header>
+    <nav aria-label="Primary">
+      <a class="brand" href="../index.html">M<span style="color:#1e3a8a">.</span>Ravi</a>
+      <a href="../index.html#blogs">&larr; All blogs</a>
+    </nav>
+  </header>
+  <main id="main">
+    <article aria-labelledby="post-title">
+      <header>
+        <p class="eyebrow">Software Architecture</p>
+        <h1 id="post-title">Michelangelo’s Architectural Feat: A Case Study of St. Peter’s Basilica Dome for Modern Software Architecture</h1>
+        <p class="meta">By Muralikrishnan Ravi · <time datetime="2026-11-21">21 November 2026</time></p>
+      </header>
+      <figure>
+        <img src="../assets/st-peters-basilica-dome.jpg" alt="The dome of St. Peter’s Basilica in Rome" />
+        <figcaption>Photo: <a href="https://commons.wikimedia.org/wiki/User:Myrabella" rel="noopener">Myrabella</a> / <a href="https://commons.wikimedia.org/wiki/File:Basilique_Saint-Pierre_Vatican_dome.jpg" rel="noopener">Wikimedia Commons</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="noopener">CC BY-SA 3.0</a>.</figcaption>
+      </figure>
+      <div class="body">
+        <p>In 1546, at age 71, Michelangelo took over St. Peter’s Basilica in Rome. The project had already dragged on for 40 years across multiple architects, accumulating sprawling, conflicting layouts and structural compromises.</p>
+
+        <p>His first architectural move wasn't adding more ornament. It was <strong>radical simplification</strong>.</p>
+
+        <p>He stripped away fragmented additions, unified the floor plan around four massive load-bearing piers, and designed a soaring double-shell dome that still defines Rome’s skyline today.</p>
+
+        <p>Here are 4 timeless lessons from St. Peter’s Basilica that apply directly to modern software and enterprise architecture:</p>
+
+        <h2>1. Ruthless Simplification Over Legacy Bloat</h2>
+        <p>Before Michelangelo, St. Peter’s suffered from decades of competing visions—the architectural equivalent of technical debt and feature creep. He consolidated the design into one cohesive, central structural concept.</p>
+        <p><strong>Software takeaway:</strong> Great architecture isn't about adding more microservices, tools, or abstractions. Sometimes the highest-leverage move is retiring accidental complexity and restoring a clear core domain boundary.</p>
+
+        <h2>2. Respect Load Paths &amp; Failure Modes</h2>
+        <p>A masonry dome spanning over 40 meters exerts enormous outward thrust. Michelangelo engineered a double-shell structure—an inner load-bearing hemisphere and an outer profile—reinforced with iron tension chains embedded around the base to contain lateral forces.</p>
+        <p><strong>Software takeaway:</strong> Understand where pressure builds in your system before it cracks under peak traffic. Backpressure, rate limiting, circuit breakers, and clear data partitioning are our modern tension chains.</p>
+
+        <h2>3. Separation of Concerns (Inner vs. Outer Shell)</h2>
+        <p>By separating the structural inner shell from the weather-facing outer shell, Michelangelo solved two distinct engineering problems without overloading a single layer.</p>
+        <p><strong>Software takeaway:</strong> Decouple your core transactional engine from edge presentation, API gateways, and analytical read models. When each layer has one clear responsibility, the whole system scales and evolves cleanly.</p>
+
+        <h2>4. Unify the System Around a Single Vision</h2>
+        <p>Michelangelo didn't design walls, ribs, and windows in isolation—he treated the building as a single living organism where every component carried weight and served the whole.</p>
+        <p><strong>Software takeaway:</strong> Microservices and distributed teams fail when services optimize locally at the expense of end-to-end reliability. Architecture governance exists to ensure every service reinforces system-wide resilience, security, and business outcomes.</p>
+
+        <p>Centuries later, the tools have changed from travertine marble and iron chains to Java, Kafka, and cloud-native infrastructure—but the fundamentals of enduring architecture remain the same: clarity of structure, respect for constraints, and courage to simplify.</p>
+
+        <p>#SoftwareArchitecture #SystemDesign #SolutionArchitecture #EngineeringLeadership #CloudNative #LegacyModernization #TechLeadership</p>
+      </div>
+    </article>
+    <p style="margin-top:40px"><a href="../index.html#blogs">&larr; Back to all blogs</a></p>
+  </main>
+  <footer>&copy; 2026 Muralikrishnan Ravi. All rights reserved.</footer>
+</body>
+</html>
