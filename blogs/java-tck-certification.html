@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>What is Java TCK Certification (And Why Should Developers Care)? | Muralikrishnan Ravi</title>
+  <meta name="description" content="Learn what Java TCK certification means, how the Java Compatibility Kit verifies a JDK and why it matters for portability and production workloads." />
+  <link rel="canonical" href="https://muralikrishnanravi.github.io/blogs/java-tck-certification.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="What is Java TCK Certification (And Why Should Developers Care)?" />
+  <meta property="og:description" content="Why TCK certification helps keep Java distributions compatible, portable and dependable." />
+  <meta property="og:url" content="https://muralikrishnanravi.github.io/blogs/java-tck-certification.html" />
+  <meta property="og:image" content="https://muralikrishnanravi.github.io/assets/java-jdk-distributions-blog-header.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Inter, system-ui, sans-serif; color: #1f2328; background: #fff; }
+    a { color: #1e3a8a; text-underline-offset: 4px; }
+    a:hover { color: #172554; }
+    a:focus-visible { outline: 2px solid #1e3a8a; outline-offset: 5px; }
+    nav { max-width: 1024px; margin: auto; padding: 22px 24px; display: flex; justify-content: space-between; gap: 24px; }
+    nav a { text-decoration: none; font-size: 14px; }
+    .brand { font-weight: 600; color: #1f2328; }
+    body > header { border-bottom: 1px solid #f3f4f6; }
+    main { max-width: 760px; margin: auto; padding: 72px 24px 80px; }
+    .eyebrow { color: #1e3a8a; text-transform: uppercase; letter-spacing: .15em; font-size: 12px; font-weight: 600; }
+    h1 { font-size: clamp(2.4rem, 6vw, 3.8rem); letter-spacing: -.045em; line-height: 1.12; margin: 20px 0; }
+    .intro { font-size: 21px; line-height: 1.65; color: #4b5563; }
+    .meta { font-size: 14px; color: #6b7280; margin: 24px 0 48px; }
+    .body { font-size: 18px; line-height: 1.85; color: #374151; }
+    h2 { font-size: 25px; line-height: 1.35; letter-spacing: -.025em; color: #1f2328; margin: 42px 0 16px; }
+    strong { color: #1f2328; }
+    ul { padding-left: 24px; }
+    li { margin-bottom: 12px; }
+    .callout { background: #eff3ff; border-left: 3px solid #1e3a8a; border-radius: 0 12px 12px 0; padding: 20px 24px; margin: 32px 0; }
+    figure { margin: 32px 0 48px; }
+    figure img { width: 100%; height: auto; border-radius: 12px; }
+    .share-actions { display: flex; align-items: center; gap: 10px; margin: -30px 0 44px; }
+    .share-actions button, .share-actions a { width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #e5e7eb; border-radius: 50%; background: #fff; color: #4b5563; text-decoration: none; cursor: pointer; }
+    .share-actions button:hover, .share-actions a:hover { border-color: #1e3a8a; color: #1e3a8a; background: #eff3ff; }
+    .share-actions svg { width: 17px; height: 17px; }
+    .share-status { font-size: 12px; color: #6b7280; }
+    footer { border-top: 1px solid #f3f4f6; padding: 32px 24px; text-align: center; font-size: 14px; color: #6b7280; }
+    .skip { position: absolute; left: -9999px; }
+    .skip:focus { left: 16px; top: 16px; padding: 12px; background: white; }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to article</a>
+  <header>
+    <nav aria-label="Primary">
+      <a class="brand" href="../index.html">M<span style="color:#1e3a8a">.</span>Ravi</a>
+      <a href="../index.html#blogs">&larr; All blogs</a>
+    </nav>
+  </header>
+  <main id="main">
+    <article aria-labelledby="post-title">
+      <header>
+        <p class="eyebrow">Java &amp; Platform Engineering</p>
+        <h1 id="post-title">What is Java TCK Certification (And Why Should Developers Care)?</h1>
+        <p class="intro">If you have downloaded a Java Development Kit (JDK) lately, you have probably noticed there isn’t just one "Java" anymore. Eclipse Temurin, BellSoft Liberica, Amazon Corretto, Microsoft Build of OpenJDK and Azul Zulu are just a few of the distributions available.</p>
+        <p class="meta">By Muralikrishnan Ravi · <time datetime="2026-11-23">23 November 2026</time></p>
+      </header>
+      <figure>
+        <img src="../assets/java-jdk-distributions-blog-header.png" alt="A single JDK above several Java distributions, including Eclipse Temurin, BellSoft Liberica, Amazon Corretto, Microsoft Build of OpenJDK and Azul Zulu" />
+      </figure>
+      <div class="share-actions" aria-label="Share this article">
+        <button type="button" class="share-button" aria-label="Share article" title="Share">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.7 10.7 6.6-4.1M8.7 13.3l6.6 4.1"/></svg>
+        </button>
+        <a href="mailto:?subject=What%20is%20Java%20TCK%20Certification&amp;body=https%3A%2F%2Fmuralikrishnanravi.github.io%2Fblogs%2Fjava-tck-certification.html" aria-label="Share by email" title="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></a>
+        <span class="share-status" role="status" aria-live="polite"></span>
+      </div>
+      <div class="body">
+        <p>All of these distributions are built from the same upstream <strong>OpenJDK</strong> source code. Yet, every reputable vendor proudly displays a specific badge on their download page: <strong>TCK Certified</strong>. Here is what that means and why it matters for applications.</p>
+
+        <h2>What Does TCK Stand For?</h2>
+        <p><strong>TCK</strong> stands for <strong>Technology Compatibility Kit</strong>. For Java SE, it is often referred to as the <strong>JCK</strong>, or Java Compatibility Kit.</p>
+        <p>Maintained by Oracle as the steward of the Java platform, the TCK is an official suite of automated tests, tools and documentation designed to verify that a Java runtime strictly adheres to the Java SE Specification.</p>
+        <p>Think of it as a seal of authenticity. OpenJDK is open source, so vendors can add custom patches, tune garbage collectors or optimize builds for their cloud infrastructure. Passing the TCK proves that, despite those vendor-specific optimizations, the JDK still behaves like standard Java.</p>
+
+        <h2>What Does the TCK Actually Test?</h2>
+        <p>The Java TCK is an exhaustive verification gauntlet consisting of more than 150,000 individual tests. To earn certification, a JDK build must pass every applicable test across several dimensions:</p>
+        <ul>
+          <li><strong>API Compliance:</strong> Ensures every standard class, method signature and return type in the Java library matches the official specification.</li>
+          <li><strong>JVM Behavior:</strong> Verifies bytecode execution, memory management, multithreading and classloading rules.</li>
+          <li><strong>Language &amp; Compiler Rules:</strong> Confirms that <code>javac</code> compiles Java syntax according to the Java Language Specification.</li>
+          <li><strong>Edge Cases &amp; Error Handling:</strong> Tests that exceptions are thrown under the exact conditions defined by the specification, rather than being silently ignored or altered.</li>
+        </ul>
+
+        <h2>Why Does TCK Certification Matter to You?</h2>
+
+        <h2>1. True "Write Once, Run Anywhere" Portability</h2>
+        <p>Java’s famous promise only works if every JVM interprets your bytecode in essentially the same way. With a TCK-certified JDK, you can develop locally on macOS using Liberica JDK, run CI/CD pipelines on Linux using Eclipse Temurin and deploy to AWS using Amazon Corretto without worrying about subtle core runtime discrepancies.</p>
+
+        <h2>2. Legal Right to the "Java SE" Name</h2>
+        <p>Under Oracle’s licensing and trademark rules, a vendor cannot legally market or label a distribution as "Java SE compatible" unless it has passed the TCK for that specific Java version.</p>
+
+        <h2>3. Enterprise &amp; Audit Peace of Mind</h2>
+        <p>If you work in fintech, healthcare or government, compliance auditors may require proof that a production runtime meets established standards. TCK certification gives security and legal teams clear evidence that the open-source JDK has undergone a recognized compatibility process.</p>
+
+        <h2>4. Risk-Free Vendor Switching</h2>
+        <p>Because TCK-certified builds guarantee compatible core behavior, teams are not locked into a single JDK vendor. A migration from Oracle JDK to a free OpenJDK distribution or a switch between cloud providers is less likely to introduce runtime compatibility surprises.</p>
+
+        <h2>What Happens If a JDK Is Not TCK-Certified?</h2>
+        <p>A non-certified OpenJDK build isn't necessarily broken. It is still based on open-source code and will likely run standard applications correctly. However, without TCK verification, there is no independent compatibility guarantee that a vendor’s patch, OS packaging or experimental JVM change did not alter an edge case of the Java specification.</p>
+        <p>For personal side projects, an uncertified build may be acceptable. For production workloads, selecting a TCK-certified distribution is an easy way to eliminate a significant class of hard-to-debug runtime issues.</p>
+
+        <h2>Popular TCK-Certified JDK Distributions</h2>
+        <p>Many major free OpenJDK distributions are TCK-certified, including:</p>
+        <ul>
+          <li>Eclipse Temurin by Adoptium</li>
+          <li>Liberica JDK by BellSoft</li>
+          <li>Amazon Corretto</li>
+          <li>Microsoft Build of OpenJDK</li>
+          <li>Azul Zulu</li>
+          <li>Red Hat build of OpenJDK</li>
+        </ul>
+        <p>Certification applies to specific distributions and versions, so production teams should verify the exact build and target Java version with the vendor.</p>
+
+        <h2>Final Thoughts</h2>
+        <aside class="callout" aria-label="Key takeaway">TCK certification allows healthy competition and innovation among JDK vendors while helping ensure that, for developers, Java remains Java no matter which download button you click.</aside>
+        <p>It is not a replacement for security updates, performance testing or application-level quality checks. It is the compatibility foundation that makes portability claims meaningful.</p>
+
+        <p>#Java #JDK #OpenJDK #TCK #JCK #PlatformEngineering #SoftwareArchitecture</p>
+      </div>
+    </article>
+    <p style="margin-top:40px"><a href="../index.html#blogs">&larr; Back to all blogs</a></p>
+  </main>
+  <script>
+    document.querySelector('.share-button').addEventListener('click', async () => {
+      const status = document.querySelector('.share-status');
+      const data = { title: document.title, url: window.location.href };
+      if (navigator.share) {
+        try { await navigator.share(data); } catch (error) { if (error.name !== 'AbortError') status.textContent = 'Unable to share'; }
+      } else if (navigator.clipboard) {
+        await navigator.clipboard.writeText(window.location.href);
+        status.textContent = 'Link copied';
+      } else {
+        status.textContent = window.location.href;
+      }
+    });
+  </script>
+  <footer>&copy; 2026 Muralikrishnan Ravi. All rights reserved.</footer>
+</body>
+</html>
