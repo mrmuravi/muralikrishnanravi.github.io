@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1010 800" role="img" aria-labelledby="diagram-title diagram-description">
+  <title id="diagram-title">Airline Operations — Caching Architecture</title>
+  <desc id="diagram-description">Airline clients connect through an API gateway to airline domain services. Services read the regional cache, authoritative data stores and search projection. Domain events flow through an event bus and invalidation worker to refresh the cache and search projection.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0 10 5 0 10z" fill="#2563eb" />
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0 10 5 0 10z" fill="#059669" />
+    </marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0 10 5 0 10z" fill="#7c3aed" />
+    </marker>
+    <style>
+      text { font-family: Inter, Arial, sans-serif; fill: #0f172a; }
+      .title { font-size: 28px; font-weight: 700; }
+      .label { font-size: 19px; font-weight: 700; }
+      .detail { font-size: 14px; fill: #475569; }
+      .box { stroke-width: 2; }
+      .sync { fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+      .async { fill: none; stroke: #7c3aed; stroke-width: 2.5; stroke-dasharray: 9 7; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+  <rect width="1010" height="800" fill="#ffffff" />
+  <text class="title" x="40" y="52">Airline Operations — Caching Architecture</text>
+
+  <g aria-label="Connector legend">
+    <rect x="690" y="72" width="280" height="82" rx="10" fill="#fff" stroke="#cbd5e1" />
+    <path d="M710 98h42" class="sync" stroke="#2563eb" marker-end="url(#arrow-blue)" />
+    <text class="detail" x="765" y="103">Synchronous request / validation</text>
+    <path d="M710 128h42" class="async" marker-end="url(#arrow-purple)" />
+    <text class="detail" x="765" y="133">Events / cache invalidation</text>
+  </g>
+
+  <g aria-label="Architecture connections">
+    <path d="M500 170v45" class="sync" stroke="#2563eb" marker-end="url(#arrow-blue)" />
+    <path d="M500 285v45" class="sync" stroke="#2563eb" marker-end="url(#arrow-blue)" />
+    <path d="M430 410v40H185v40" class="sync" stroke="#059669" marker-end="url(#arrow-green)" />
+    <path d="M500 410v80" class="sync" stroke="#7c3aed" marker-end="url(#arrow-purple)" />
+    <path d="M570 410v40h245v40" class="sync" stroke="#059669" marker-end="url(#arrow-green)" />
+    <path d="M185 580v55" class="async" marker-end="url(#arrow-purple)" />
+    <path d="M330 675h35" class="async" marker-end="url(#arrow-purple)" />
+    <path d="M450 635v-30h-10v-25" class="async" marker-end="url(#arrow-purple)" />
+    <path d="M660 675h300v-70H815v-25" class="async" marker-end="url(#arrow-purple)" />
+  </g>
+
+  <g aria-label="Airline clients">
+    <rect class="box" x="375" y="102" width="250" height="68" rx="12" fill="#eff6ff" stroke="#2563eb" />
+    <text class="label" x="500" y="130" text-anchor="middle">Airline Clients</text>
+    <text class="detail" x="500" y="153" text-anchor="middle">Passenger app · Operations console</text>
+  </g>
+  <g aria-label="API gateway">
+    <rect class="box" x="375" y="217" width="250" height="68" rx="12" fill="#dbeafe" stroke="#2563eb" />
+    <text class="label" x="500" y="245" text-anchor="middle">API Gateway</text>
+    <text class="detail" x="500" y="268" text-anchor="middle">Authentication · routing · rate limits</text>
+  </g>
+  <g aria-label="Airline domain services">
+    <rect class="box" x="370" y="330" width="260" height="80" rx="12" fill="#dbeafe" stroke="#2563eb" />
+    <text class="label" x="500" y="362" text-anchor="middle">Airline Domain Services</text>
+    <text class="detail" x="500" y="388" text-anchor="middle">Flight search · booking · flight operations</text>
+  </g>
+
+  <g aria-label="Authoritative data stores">
+    <rect class="box" x="40" y="490" width="290" height="90" rx="12" fill="#ecfdf5" stroke="#059669" />
+    <text class="label" x="185" y="526" text-anchor="middle">Authoritative Data Stores</text>
+    <text class="detail" x="185" y="551" text-anchor="middle">Flight schedules · reservations · inventory</text>
+    <text class="detail" x="185" y="570" text-anchor="middle">Airport operations</text>
+  </g>
+  <g aria-label="Regional cache">
+    <rect class="box" x="355" y="490" width="290" height="90" rx="12" fill="#f3e8ff" stroke="#7c3aed" />
+    <text class="label" x="500" y="526" text-anchor="middle" fill="#581c87">Regional Cache</text>
+    <text class="detail" x="500" y="553" text-anchor="middle">Route · schedule · status · seat-map reads</text>
+  </g>
+  <g aria-label="Search projection">
+    <rect class="box" x="670" y="490" width="290" height="90" rx="12" fill="#ecfdf5" stroke="#059669" />
+    <text class="label" x="815" y="526" text-anchor="middle">Search Projection</text>
+    <text class="detail" x="815" y="553" text-anchor="middle">Read-optimized search index</text>
+  </g>
+
+  <g aria-label="Domain event bus">
+    <rect class="box" x="40" y="635" width="290" height="80" rx="12" fill="#f5f3ff" stroke="#7c3aed" />
+    <text class="label" x="185" y="668" text-anchor="middle" fill="#581c87">Domain Event Bus</text>
+    <text class="detail" x="185" y="692" text-anchor="middle">Schedule · inventory · flight-status changes</text>
+  </g>
+  <g aria-label="Cache invalidation worker">
+    <rect class="box" x="365" y="635" width="295" height="80" rx="12" fill="#f5f3ff" stroke="#7c3aed" />
+    <text class="label" x="512" y="668" text-anchor="middle" fill="#581c87">Invalidation Worker</text>
+    <text class="detail" x="512" y="692" text-anchor="middle">Targeted eviction · retry · idempotency</text>
+  </g>
+
+  <rect x="40" y="747" width="920" height="38" rx="8" fill="#f8fafc" stroke="#cbd5e1" />
+  <text class="detail" x="500" y="771" text-anchor="middle">Cached search speeds reads; booking always confirms inventory with the authoritative service.</text>
+</svg>

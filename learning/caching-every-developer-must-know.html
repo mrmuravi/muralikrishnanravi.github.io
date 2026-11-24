@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Caching - Every Developer Must Know! | Muralikrishnan Ravi</title>
+  <meta name="description" content="An A-to-Z guide to caching concepts, patterns, consistency, observability and an airline operations case study." />
+  <link rel="canonical" href="https://muralikrishnanravi.github.io/learning/caching-every-developer-must-know.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Caching - Every Developer Must Know!" />
+  <meta property="og:description" content="Learn cache fundamentals and apply them to a real airline operations architecture." />
+  <meta property="og:url" content="https://muralikrishnanravi.github.io/learning/caching-every-developer-must-know.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Inter, system-ui, sans-serif; color: #1f2328; background: #fff; }
+    a { color: #1e3a8a; text-underline-offset: 4px; }
+    a:hover { color: #172554; }
+    a:focus-visible { outline: 2px solid #1e3a8a; outline-offset: 5px; }
+    nav { max-width: 1024px; margin: auto; padding: 22px 24px; display: flex; justify-content: space-between; gap: 24px; }
+    nav a { text-decoration: none; font-size: 14px; }
+    .brand { font-weight: 600; color: #1f2328; }
+    body > header { border-bottom: 1px solid #f3f4f6; }
+    main { max-width: 800px; margin: auto; padding: 72px 24px 80px; }
+    .eyebrow { color: #1e3a8a; text-transform: uppercase; letter-spacing: .15em; font-size: 12px; font-weight: 600; }
+    h1 { font-size: clamp(2.4rem, 6vw, 3.8rem); letter-spacing: -.045em; line-height: 1.12; margin: 20px 0; }
+    h2 { font-size: 25px; line-height: 1.35; letter-spacing: -.025em; color: #1f2328; margin: 42px 0 16px; }
+    h3 { font-size: 20px; line-height: 1.4; color: #1f2328; margin: 28px 0 10px; }
+    .intro { font-size: 21px; line-height: 1.65; color: #4b5563; }
+    .meta { font-size: 14px; color: #6b7280; margin: 24px 0 48px; }
+    .body { font-size: 18px; line-height: 1.85; color: #374151; }
+    strong { color: #1f2328; }
+    ul, ol { padding-left: 24px; }
+    li { margin: 8px 0; }
+    code { background: #f3f4f6; border-radius: 4px; padding: 2px 5px; font-size: .9em; }
+    table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 16px; }
+    th, td { border: 1px solid #e5e7eb; padding: 12px; text-align: left; vertical-align: top; }
+    th { background: #f9fafb; color: #1f2328; }
+    .callout { background: #eff3ff; border-left: 3px solid #1e3a8a; border-radius: 0 12px 12px 0; padding: 20px 24px; margin: 32px 0; }
+    .alphabet { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 24px 0 36px; }
+    .alphabet article { border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px; line-height: 1.55; }
+    .alphabet h3 { margin: 0 0 6px; font-size: 17px; }
+    .alphabet p { margin: 0; font-size: 16px; }
+    .architecture { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px 24px; margin: 24px 0; line-height: 1.7; }
+    .architecture-figure { margin: 32px 0; border: 1px solid #e5e7eb; border-radius: 12px; padding: 12px; background: #fff; }
+    .architecture-figure img { display: block; width: 100%; height: auto; }
+    .architecture-figure figcaption { margin-top: 10px; color: #6b7280; font-size: 14px; line-height: 1.6; }
+    .sources { border-top: 1px solid #e5e7eb; margin-top: 48px; font-size: 14px; line-height: 1.8; }
+    .share-actions { display: flex; align-items: center; gap: 10px; margin: -30px 0 44px; }
+    .share-actions button, .share-actions a { width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #e5e7eb; border-radius: 50%; background: #fff; color: #4b5563; text-decoration: none; cursor: pointer; }
+    .share-actions button:hover, .share-actions a:hover { border-color: #1e3a8a; color: #1e3a8a; background: #eff3ff; }
+    .share-actions svg { width: 17px; height: 17px; }
+    .share-status { font-size: 12px; color: #6b7280; }
+    footer { border-top: 1px solid #f3f4f6; padding: 32px 24px; text-align: center; font-size: 14px; color: #6b7280; }
+    .skip { position: absolute; left: -9999px; }
+    .skip:focus { left: 16px; top: 16px; padding: 12px; background: white; }
+    @media (max-width: 640px) { nav { align-items: flex-start; } .alphabet { grid-template-columns: 1fr; } table { font-size: 14px; } th, td { padding: 8px; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to article</a>
+  <header>
+    <nav aria-label="Primary">
+      <a class="brand" href="../index.html">M<span style="color:#1e3a8a">.</span>Ravi</a>
+      <a href="../index.html#learning">&larr; Learning &amp; Development</a>
+    </nav>
+  </header>
+  <main id="main">
+    <article aria-labelledby="post-title">
+      <header>
+        <p class="eyebrow">Systems Learning</p>
+        <h1 id="post-title">Caching - Every Developer Must Know!</h1>
+        <p class="intro">Caching stores reusable work closer to the consumer. It can improve latency and reduce cost, but it also introduces copies of data that must expire, invalidate or be reconciled.</p>
+        <p class="meta">By Muralikrishnan Ravi · <time datetime="2026-11-24">24 November 2026</time></p>
+      </header>
+      <div class="share-actions" aria-label="Share this article">
+        <button type="button" class="share-button" aria-label="Share article" title="Share"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.7 10.7 6.6-4.1M8.7 13.3l6.6 4.1"/></svg></button>
+        <a href="mailto:?subject=Caching%20-%20Every%20Developer%20Must%20Know&amp;body=https%3A%2F%2Fmuralikrishnanravi.github.io%2Flearning%2Fcaching-every-developer-must-know.html" aria-label="Share by email" title="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></a>
+        <span class="share-status" role="status" aria-live="polite"></span>
+      </div>
+      <div class="body">
+        <aside class="callout" aria-label="Core idea"><strong>Cache rule:</strong> never cache an answer unless you can describe who owns the source of truth, how stale data is detected or tolerated, and what happens when the cache is unavailable.</aside>
+
+        <h2>A-Z of cache concepts</h2>
+        <div class="alphabet" aria-label="A to Z cache glossary">
+          <article><h3>A - Availability</h3><p>Cache failures should usually degrade to the source or a bounded fallback, not take down the application.</p></article>
+          <article><h3>B - Buffer</h3><p>Cache operations are read/write buffers for data or work; they are not automatically reliable storage.</p></article>
+          <article><h3>C - Cache-aside</h3><p>Application code reads the cache, then loads and stores missing entries from the source of truth.</p></article>
+          <article><h3>D - Distributed cache</h3><p>Shared cache nodes serve many application instances and require capacity, partitioning and network design.</p></article>
+          <article><h3>E - Eviction</h3><p>LRU, LFU or TTL policy removes entries when memory fills or values become no longer useful.</p></article>
+          <article><h3>F - Fetch</h3><p>Every miss triggers a fetch decision: load synchronously, fetch asynchronously or return stale data.</p></article>
+          <article><h3>G - Granularity</h3><p>Choose whether to cache an object, document, query result, rendered page or computed fragment.</p></article>
+          <article><h3>H - Hit and miss</h3><p>A hit is served from cache; a miss requires origin access. Track both hit ratio and miss latency.</p></article>
+          <article><h3>I - Invalidation</h3><p>Application events, source updates or explicit keys must remove or refresh stale cached values.</p></article>
+          <article><h3>J - Jitter</h3><p>Add random time around expiration to spread simultaneous misses and avoid a thundering herd.</p></article>
+          <article><h3>K - Key design</h3><p>Keys should be stable, namespaced, bounded and include every input that affects the cached value.</p></article>
+          <article><h3>L - Local cache</h3><p>In-process memory is fastest but has per-instance limits and may become inconsistent across deployments.</p></article>
+          <article><h3>M - Memory sizing</h3><p>Measure entry size, traffic, cardinality and eviction cost; cache capacity is a cost and reliability decision.</p></article>
+          <article><h3>N - Negative cache</h3><p>Temporarily cache a known miss to protect expensive lookups, while using a short TTL to limit bad results.</p></article>
+          <article><h3>O - Origin</h3><p>The database, service or rendering system is the source of truth that supplies cache misses.</p></article>
+          <article><h3>P - Prewarming</h3><p>Populate likely hot entries before traffic arrives, especially after deployment or cache restart.</p></article>
+          <article><h3>Q - Query caching</h3><p>Cache query results with invalidation tied to query parameters or source records, not merely response text.</p></article>
+          <article><h3>R - Refresh-ahead</h3><p>Refresh popular entries before expiration to keep hot reads fast and avoid origin spikes.</p></article>
+          <article><h3>S - Staleness</h3><p>Define acceptable age. Freshness, correctness and availability often require an explicit trade-off.</p></article>
+          <article><h3>T - TTL</h3><p>Time-to-live bounds retention. It protects against permanent staleness but does not guarantee instant updates.</p></article>
+          <article><h3>U - Unavailability</h3><p>Design cache-open failure, origin failure and partial-hit behavior before deploying traffic.</p></article>
+          <article><h3>V - Versioning</h3><p>Include schema or model versions in keys and payload metadata to prevent incompatible cached values.</p></article>
+          <article><h3>W - Write-through</h3><p>Write to cache and source together, trading write latency for stronger cache availability.</p></article>
+          <article><h3>X - X factor</h3><p>Test the cache's cross-load behavior: hot keys, cold starts, race conditions and regional traffic.</p></article>
+          <article><h3>Y - Yield</h3><p>Measure user-visible yield: latency saved, load removed and revenue or reliability gained per cache dollar.</p></article>
+          <article><h3>Z - Zombie entries</h3><p>Expired, orphaned or duplicate values can consume memory and produce surprising reads; remove and monitor them.</p></article>
+        </div>
+
+        <h2>Common caching patterns</h2>
+        <table>
+          <thead><tr><th>Pattern</th><th>How it works</th><th>Best when</th><th>Main risk</th></tr></thead>
+          <tbody>
+            <tr><td>Cache-aside</td><td>Application checks cache, loads misses and writes results back.</td><td>Read-heavy workloads with independent key access.</td><td>Race or stampede on miss.</td></tr>
+            <tr><td>Write-through</td><td>Write cache and data store in the write path.</td><td>Reads require recently written values.</td><td>Write latency and more complex failures.</td></tr>
+            <tr><td>Write-behind</td><td>Write cache first and persist asynchronously.</td><td>High-throughput, tolerant workloads.</td><td>Loss or reordering before durable storage.</td></tr>
+            <tr><td>Refresh-ahead</td><td>Proactively extend popular entries before expiry.</td><td>Stable hot keys and predictable demand.</td><td>Wasted refresh work for low-use data.</td></tr>
+            <tr><td>Read-through</td><td>Cache library or service loads misses transparently.</td><td>Common data-access abstraction.</td><td>Hidden latency and coupling.</td></tr>
+          </tbody>
+        </table>
+
+        <h2>Cache consistency and invalidation</h2>
+        <p>There are no universal “correct” consistency rules for caches. The required behavior depends on the domain. Flight display times may tolerate seconds or minutes, while seat inventory and payment state require tighter protections.</p>
+        <ul>
+          <li><strong>TTL:</strong> use a bounded lifetime as the final safety net.</li>
+          <li><strong>Event invalidation:</strong> invalidate related keys after a database or domain event commits.</li>
+          <li><strong>Versioned keys:</strong> publish a new value under a new key instead of overwriting a hot key.</li>
+          <li><strong>Source validation:</strong> revalidate uncertain values by version, ETag or last-modified timestamp.</li>
+          <li><strong>Stale-if-error:</strong> serve limited stale data during origin outages only when business rules permit it.</li>
+        </ul>
+
+        <h2>Stampede prevention</h2>
+        <p>A cache miss can become dangerous if thousands of requests try to rebuild the same key simultaneously. Prevent it with request coalescing, per-key locking, probabilistic refresh-ahead, jittered TTL and bounded retries. The database or upstream service must receive a controlled number of rebuild requests, not an amplification of all incoming traffic.</p>
+
+        <h2>Case study: airline operations</h2>
+        <p>Consider an airline operations platform serving flight search, booking, airport status, gate assignment and disruption management. The system receives high read volume while core operational updates are made by scheduling, airport, reservation and disruption teams.</p>
+
+        <h3>1. Define cache boundaries</h3>
+        <table>
+          <thead><tr><th>Data</th><th>Cache strategy</th><th>Staleness policy</th></tr></thead>
+          <tbody>
+            <tr><td>Route and airport catalog</td><td>Edge plus distributed cache</td><td>Hours; versioned during schedule release.</td></tr>
+            <tr><td>Flight schedule</td><td>Distributed cache with event invalidation</td><td>Seconds to minutes; revalidate changes immediately.</td></tr>
+            <tr><td>Seat map</td><td>Short TTL plus inventory events</td><td>Seconds; never use cache as final booking authority.</td></tr>
+            <tr><td>Seat price</td><td>Short TTL or no cache for checkout</td><td>Business-session freshness or direct origin validation.</td></tr>
+            <tr><td>Gate assignment</td><td>Operational real-time cache</td><td>Invalidated and acknowledged on assignment event.</td></tr>
+            <tr><td>Passenger-facing disruption notice</td><td>Cache with refresh-ahead</td><td>Fast propagation; explicit last-updated timestamp.</td></tr>
+          </tbody>
+        </table>
+
+        <h3>2. Proposed architecture</h3>
+        <div class="architecture">
+          <strong>Request path:</strong><br />
+          Traveller or operation app &rarr; API gateway &rarr; service &rarr; regional cache &rarr; authoritative domain service/database<br /><br />
+          <strong>Update path:</strong><br />
+          Scheduling, reservation or airport service &rarr; domain event &rarr; cache invalidation worker &rarr; cache and search projection
+        </div>
+        <figure class="architecture-figure">
+          <img src="../assets/airline-operations-caching-architecture.svg" alt="Airline caching architecture: passenger and operations clients use an API gateway and domain services. Services read the regional cache and authoritative data stores; domain events flow through an event bus and invalidation worker to refresh the cache and search projection." loading="lazy" decoding="async" />
+          <figcaption>Airline operations caching architecture. Solid arrows show request and authoritative-data paths; dashed arrows show asynchronous event processing and cache invalidation.</figcaption>
+        </figure>
+        <p>A cache should sit close to the read API, but operational writes continue to pass through domain services and durable databases. For example, a booking request must reserve or verify inventory against the authoritative reservation system. Caching inventory alone could lead to double allocation or overselling.</p>
+
+        <h3>3. High-demand flight search</h3>
+        <p>Popular routes may receive huge search traffic after a price campaign or disruption. The search service caches normalized route queries for a short period, with separate keys by origin, destination, date, cabin and locale. A cache stampede is prevented through request coalescing and TTL jitter.</p>
+        <p>Because prices and seat availability change continuously, cached search results show a context label such as “prices updated moments ago” and the next booking step performs fresh validation. A user can shop from cached data, but purchase must be confirmed from source inventory.</p>
+
+        <h3>4. Irregular operations</h3>
+        <p>During a storm or airport closure, disruption events arrive from operations teams and external data sources. The platform can:
+        </p>
+        <ol>
+          <li>Publish a versioned disruption event to the event stream.</li>
+          <li>Invalidate affected flight and airport keys.</li>
+          <li>Update projections and warm them for affected passengers.</li>
+          <li>Push current status to passenger notification channels.</li>
+          <li>Expose stale data only for a clearly defined read-only fallback.</li>
+        </ol>
+        <p>If a regional cache is unavailable, flight status remains available from a replicated operational service, but search traffic is rate-limited to protect source systems. The safety-critical write path must remain independent of cache health.</p>
+
+        <h3>5. Metrics and alarms</h3>
+        <ul>
+          <li>Hit ratio by key type, region and endpoint.</li>
+          <li>Miss latency and origin request fan-out.</li>
+          <li>Cache and origin memory, CPU and saturation.</li>
+          <li>Evictions, expired entries and hot-key concentration.</li>
+          <li>Age of the newest and oldest operational data.</li>
+          <li>Invalidation lag and event-delivery failures.</li>
+          <li>Fallback usage and stale-data exposure.</li>
+        </ul>
+
+        <h3>Outcome</h3>
+        <aside class="callout" aria-label="Case study result">The airline improves search and display latency while keeping booking and operational writes authoritative. Cache data accelerates reads, but domain services remain responsible for correctness, authorization and durable state.</aside>
+        <p>The case demonstrates the central caching principle: cache the work that is expensive and safe to reuse, not every part of the system. The correct strategy differs by data class, region and business risk.</p>
+
+        <h2>Developer checklist</h2>
+        <ol>
+          <li>Define the source of truth and cache ownership.</li>
+          <li>Define permitted staleness and fallback behavior.</li>
+          <li>Use bounded, namespaced and version-aware keys.</li>
+          <li>Add TTL even when event invalidation exists.</li>
+          <li>Prevent stampedes and hot-key amplification.</li>
+          <li>Design cache-open and origin-unavailable paths.</li>
+          <li>Never cache secrets or authorization decisions without strict isolation.</li>
+          <li>Measure hit ratio, miss latency, origin load, staleness and cost together.</li>
+          <li>Test cold starts, restarts, invalidation delays and partial failures.</li>
+          <li>Document which operations remain source-authoritative.</li>
+        </ol>
+
+        <h2>Final takeaway</h2>
+        <p>A good cache is an explicit architectural component, not a magical speed switch. It requires ownership, lifecycle rules, invalidation, observability and failure design. Used for the right data, caching makes systems faster and more resilient. Used indiscriminately, it creates stale answers and a second system that is difficult to operate.</p>
+
+        <section class="sources" aria-labelledby="sources-heading">
+          <h2 id="sources-heading">Further reading</h2>
+          <ol>
+            <li><a href="https://aws.amazon.com/caching/">AWS - Caching overview</a>.</li>
+            <li><a href="https://learn.microsoft.com/azure/architecture/best-practices/caching">Microsoft Azure Architecture Center - Caching guidance</a>.</li>
+            <li><a href="https://cloud.google.com/memorystore/docs/redis/redis-overview">Google Cloud - Managed Redis overview</a>.</li>
+            <li><a href="https://developer.mozilla.org/docs/Web/HTTP/Caching">MDN - HTTP caching</a>.</li>
+          </ol>
+        </section>
+      </div>
+    </article>
+    <p style="margin-top:40px"><a href="../index.html#learning">&larr; Back to Learning &amp; Development</a></p>
+  </main>
+  <script>
+    document.querySelector('.share-button').addEventListener('click', async () => {
+      const status = document.querySelector('.share-status');
+      const data = { title: document.title, url: window.location.href };
+      if (navigator.share) {
+        try { await navigator.share(data); } catch (error) { if (error.name !== 'AbortError') status.textContent = 'Unable to share'; }
+      } else if (navigator.clipboard) {
+        await navigator.clipboard.writeText(window.location.href);
+        status.textContent = 'Link copied';
+      } else {
+        status.textContent = window.location.href;
+      }
+    });
+  </script>
+  <footer>&copy; 2026 Muralikrishnan Ravi. All rights reserved.</footer>
+</body>
+</html>
