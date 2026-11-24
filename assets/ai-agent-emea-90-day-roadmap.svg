@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 330" role="img" aria-labelledby="title description">
+  <title id="title">A 90-day AI agent evidence roadmap</title>
+  <desc id="description">Three phases move from selecting and baselining a bounded workflow, through instrumenting and testing it, to a controlled production evaluation. Each phase ends with evidence and a decision to scale, redesign, or stop.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0 10 5 0 10z" fill="#64748b" />
+    </marker>
+    <style>
+      text { font-family: Inter, Arial, sans-serif; fill: #0f172a; }
+      .phase { font-size: 16px; font-weight: 700; letter-spacing: 1px; }
+      .heading { font-size: 21px; font-weight: 700; }
+      .detail { font-size: 15px; fill: #475569; }
+    </style>
+  </defs>
+  <rect width="1040" height="330" fill="#ffffff" />
+  <text x="40" y="43" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="700" fill="#0f172a">A 90-day evidence path — not an autonomy deadline</text>
+
+  <g aria-label="Days 0 to 30, select and baseline">
+    <rect x="40" y="78" width="285" height="156" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2" />
+    <text class="phase" x="64" y="111" fill="#1e40af">DAYS 0–30</text>
+    <text class="heading" x="64" y="145">Select &amp; baseline</text>
+    <text class="detail" x="64" y="178">Bounded workflow · process owner</text>
+    <text class="detail" x="64" y="201">Value hypothesis · risk · data map</text>
+  </g>
+  <path d="M332 156h38" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)" />
+
+  <g aria-label="Days 31 to 60, instrument and test">
+    <rect x="380" y="78" width="285" height="156" rx="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2" />
+    <text class="phase" x="404" y="111" fill="#6d28d9">DAYS 31–60</text>
+    <text class="heading" x="404" y="145">Instrument &amp; test</text>
+    <text class="detail" x="404" y="178">Trace · scoped tools · evaluations</text>
+    <text class="detail" x="404" y="201">Human review · cost · rollback test</text>
+  </g>
+  <path d="M672 156h38" fill="none" stroke="#64748b" stroke-width="2.5" marker-end="url(#arrow)" />
+
+  <g aria-label="Days 61 to 90, controlled production">
+    <rect x="720" y="78" width="285" height="156" rx="14" fill="#ecfdf5" stroke="#059669" stroke-width="2" />
+    <text class="phase" x="744" y="111" fill="#047857">DAYS 61–90</text>
+    <text class="heading" x="744" y="145">Controlled production</text>
+    <text class="detail" x="744" y="178">Limited cohort · compare baseline</text>
+    <text class="detail" x="744" y="201">Validate quality, cost &amp; outcomes</text>
+  </g>
+
+  <rect x="40" y="264" width="965" height="42" rx="10" fill="#f8fafc" stroke="#cbd5e1" />
+  <text x="522" y="291" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700" fill="#334155">DECISION GATE: SCALE · REDESIGN · OR STOP — BASED ON EVIDENCE</text>
+</svg>

@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 740" role="img" aria-labelledby="title description">
+  <title id="title">AI Agents: From Autonomy to Business Value</title>
+  <desc id="description">A glowing AI agent network links customer needs, trusted data and business workflows to research, decision, action and human review. The network leads to measurable quality, cycle-time and net-value outcomes.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#08152f" />
+      <stop offset=".55" stop-color="#12275b" />
+      <stop offset="1" stop-color="#101a3c" />
+    </linearGradient>
+    <linearGradient id="agent-card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#21386f" />
+      <stop offset="1" stop-color="#182950" />
+    </linearGradient>
+    <linearGradient id="core" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#72e4ff" />
+      <stop offset=".52" stop-color="#7e8dff" />
+      <stop offset="1" stop-color="#c88aff" />
+    </linearGradient>
+    <linearGradient id="outcome" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#143c58" />
+      <stop offset="1" stop-color="#16344a" />
+    </linearGradient>
+    <radialGradient id="halo">
+      <stop offset="0" stop-color="#657dff" stop-opacity=".32" />
+      <stop offset="1" stop-color="#657dff" stop-opacity="0" />
+    </radialGradient>
+    <filter id="soft-glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="13" />
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M1 1 11 6 1 11" fill="none" stroke="#8bdcff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" />
+    </marker>
+    <style>
+      text { font-family: Inter, Arial, sans-serif; }
+      .eyebrow { fill: #a9c5ff; font-size: 19px; font-weight: 700; letter-spacing: 3px; }
+      .main-label { fill: #f5f8ff; font-size: 26px; font-weight: 700; letter-spacing: .5px; }
+      .sub-label { fill: #c3d1ef; font-size: 19px; }
+      .context-label { fill: #f5f8ff; font-size: 21px; font-weight: 700; }
+      .outcome-title { fill: #f5f8ff; font-size: 23px; font-weight: 700; }
+      .card-label { fill: #f5f8ff; font-size: 21px; font-weight: 700; }
+      .human-label { fill: #f5f8ff; font-size: 19px; font-weight: 700; }
+      .card-sub { fill: #c3d1ef; font-size: 16px; }
+      .outcome-label { fill: #f5f8ff; font-size: 20px; font-weight: 700; }
+    </style>
+  </defs>
+  <rect width="1600" height="740" rx="28" fill="url(#background)" />
+  <circle cx="805" cy="370" r="345" fill="url(#halo)" />
+
+  <g fill="none" stroke="#b8d7ff" stroke-opacity=".08">
+    <path d="M0 112h1600M0 628h1600M170 0v740M1430 0v740" />
+    <circle cx="805" cy="370" r="255" />
+    <circle cx="805" cy="370" r="315" />
+  </g>
+  <g fill="#c6d9ff" opacity=".34">
+    <circle cx="64" cy="98" r="2" /><circle cx="1533" cy="105" r="2" />
+    <circle cx="1522" cy="625" r="2" /><circle cx="80" cy="640" r="2" />
+    <circle cx="360" cy="100" r="2" /><circle cx="1234" cy="95" r="2" />
+  </g>
+
+  <text class="eyebrow" x="68" y="72">FROM AUTONOMY TO OUTCOMES</text>
+
+  <g fill="none" stroke="#82cfff" stroke-linecap="round" stroke-width="3">
+    <path d="M348 365C410 365 433 365 495 365" marker-end="url(#arrow)" />
+    <path d="M700 230C731 267 746 283 765 300" stroke-opacity=".8" />
+    <path d="M900 230C879 267 864 283 845 300" stroke-opacity=".8" />
+    <path d="M700 520C731 481 746 461 765 444" stroke-opacity=".8" />
+    <path d="M900 520C879 481 864 461 845 444" stroke-opacity=".8" />
+    <path d="M962 365C1060 365 1114 365 1224 365" marker-end="url(#arrow)" />
+  </g>
+  <g fill="#d9f4ff">
+    <circle cx="442" cy="365" r="5" /><circle cx="708" cy="252" r="4" />
+    <circle cx="908" cy="252" r="4" /><circle cx="708" cy="496" r="4" />
+    <circle cx="908" cy="496" r="4" /><circle cx="1095" cy="365" r="5" />
+  </g>
+
+  <g aria-label="Business context">
+    <rect x="68" y="241" width="280" height="248" rx="22" fill="#142951" stroke="#5d82cb" stroke-width="2" />
+    <text class="context-label" x="90" y="289">BUSINESS CONTEXT</text>
+    <g>
+      <circle cx="108" cy="337" r="15" fill="#28477f" />
+      <path d="M101 341c1-5 4-8 7-8s6 3 7 8M108 328a4 4 0 1 0 0 8 4 4 0 0 0 0-8" fill="none" stroke="#9fe7ff" stroke-width="2" />
+      <text class="sub-label" x="138" y="344">Customer needs</text>
+    </g>
+    <g>
+      <circle cx="108" cy="390" r="15" fill="#28477f" />
+      <path d="M101 385h14v11h-14zM104 382v3m8-3v3m-8 5h8" fill="none" stroke="#b4a8ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+      <text class="sub-label" x="138" y="397">Trusted data</text>
+    </g>
+    <g>
+      <circle cx="108" cy="443" r="15" fill="#28477f" />
+      <path d="M100 443h6l3-6 4 12 3-6h5" fill="none" stroke="#91edce" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+      <text class="sub-label" x="138" y="450">Business workflow</text>
+    </g>
+  </g>
+
+  <g aria-label="AI agent network">
+    <circle cx="805" cy="372" r="154" fill="#647bff" opacity=".15" filter="url(#soft-glow)" />
+    <circle cx="805" cy="372" r="112" fill="#152b5b" stroke="#7595ff" stroke-opacity=".72" stroke-width="2" />
+    <circle cx="805" cy="372" r="90" fill="#1b3670" stroke="url(#core)" stroke-width="3" />
+    <circle cx="805" cy="372" r="72" fill="none" stroke="#a8e7ff" stroke-opacity=".27" stroke-width="1.5" />
+    <g fill="none" stroke="url(#core)" stroke-linecap="round" stroke-linejoin="round" stroke-width="4">
+      <path d="M775 364h20l10-17 13 34 10-17h11" />
+      <path d="M788 394h34" stroke-opacity=".75" />
+    </g>
+    <g fill="#c6f5ff">
+      <circle cx="775" cy="364" r="4" /><circle cx="795" cy="364" r="4" />
+      <circle cx="805" cy="347" r="4" /><circle cx="818" cy="381" r="4" />
+      <circle cx="839" cy="364" r="4" /><circle cx="788" cy="394" r="3" />
+      <circle cx="822" cy="394" r="3" />
+    </g>
+    <text class="main-label" x="805" y="420" text-anchor="middle">AI AGENT</text>
+    <text class="sub-label" x="805" y="446" text-anchor="middle">Reason · coordinate · act</text>
+  </g>
+
+  <g aria-label="Research agent">
+    <rect x="480" y="154" width="220" height="76" rx="16" fill="url(#agent-card)" stroke="#57cfff" stroke-width="1.8" />
+    <circle cx="509" cy="192" r="13" fill="#214d79" />
+    <path d="M504 187h10v10h-10zM506 190h6m-6 3h4" fill="none" stroke="#8ee7ff" stroke-linecap="round" stroke-width="1.7" />
+    <text class="card-label" x="533" y="189">RESEARCH</text>
+    <text class="card-sub" x="533" y="212">Grounded context</text>
+  </g>
+  <g aria-label="Decision agent">
+    <rect x="900" y="154" width="230" height="76" rx="16" fill="url(#agent-card)" stroke="#a992ff" stroke-width="1.8" />
+    <circle cx="930" cy="192" r="13" fill="#3c3a78" />
+    <path d="M930 184v16m0-16-5 5m5-5 5 5m-5 11-5-5m5 5 5-5" fill="none" stroke="#d0bcff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" />
+    <text class="card-label" x="954" y="189">DECIDE</text>
+    <text class="card-sub" x="954" y="212">Policy checks</text>
+  </g>
+  <g aria-label="Action agent">
+    <rect x="480" y="512" width="220" height="76" rx="16" fill="url(#agent-card)" stroke="#66dfbe" stroke-width="1.8" />
+    <circle cx="509" cy="550" r="13" fill="#1d5b5b" />
+    <path d="m503 551 4 4 8-10" fill="none" stroke="#9ff3d8" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" />
+    <text class="card-label" x="533" y="547">ACT</text>
+    <text class="card-sub" x="533" y="570">Scoped tools</text>
+  </g>
+  <g aria-label="Human review">
+    <rect x="900" y="512" width="230" height="76" rx="16" fill="url(#agent-card)" stroke="#ffc77d" stroke-width="1.8" />
+    <circle cx="930" cy="550" r="13" fill="#66503d" />
+    <path d="M924 555c1-4 3-6 6-6s5 2 6 6m-6-9a3 3 0 1 0 0-6 3 3 0 0 0 0 6" fill="none" stroke="#ffe0a6" stroke-width="1.8" />
+    <text class="human-label" x="954" y="547">HUMAN REVIEW</text>
+    <text class="card-sub" x="954" y="570">Approve · intervene</text>
+  </g>
+
+  <g aria-label="Measurable business outcomes">
+    <rect x="1224" y="224" width="310" height="282" rx="22" fill="url(#outcome)" stroke="#53d5ae" stroke-width="2" />
+    <text class="outcome-title" x="1252" y="272">BUSINESS VALUE</text>
+    <text class="sub-label" x="1257" y="301">Measured outcomes</text>
+    <g>
+      <circle cx="1270" cy="345" r="12" fill="#1e725f" />
+      <path d="m1265 345 4 4 7-8" fill="none" stroke="#a5ffe0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+      <text class="outcome-label" x="1295" y="352">Quality</text>
+      <path d="M1428 353h94" stroke="#3b806e" stroke-width="6" stroke-linecap="round" />
+      <path d="M1428 353h70" stroke="#54dfb2" stroke-width="6" stroke-linecap="round" />
+    </g>
+    <g>
+      <circle cx="1270" cy="399" r="12" fill="#1e725f" />
+      <path d="m1265 399 4 4 7-8" fill="none" stroke="#a5ffe0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+      <text class="outcome-label" x="1295" y="406">Cycle time</text>
+      <path d="M1428 407h94" stroke="#3b806e" stroke-width="6" stroke-linecap="round" />
+      <path d="M1428 407h53" stroke="#54dfb2" stroke-width="6" stroke-linecap="round" />
+    </g>
+    <g>
+      <circle cx="1270" cy="453" r="12" fill="#1e725f" />
+      <path d="m1265 453 4 4 7-8" fill="none" stroke="#a5ffe0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+      <text class="outcome-label" x="1295" y="460">Net value</text>
+      <path d="M1428 461h94" stroke="#3b806e" stroke-width="6" stroke-linecap="round" />
+      <path d="M1428 461h80" stroke="#54dfb2" stroke-width="6" stroke-linecap="round" />
+    </g>
+  </g>
+
+  <g aria-label="Operating principles">
+    <rect x="530" y="642" width="550" height="46" rx="23" fill="#182c58" stroke="#566da7" stroke-width="1.5" />
+    <circle cx="567" cy="665" r="5" fill="#78ddff" />
+    <text x="590" y="672" fill="#e1eaff" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="2">OBSERVE</text>
+    <circle cx="738" cy="665" r="5" fill="#b9a2ff" />
+    <text x="760" y="672" fill="#e1eaff" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="2">GOVERN</text>
+    <circle cx="900" cy="665" r="5" fill="#78e4c3" />
+    <text x="922" y="672" fill="#e1eaff" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="2">MEASURE</text>
+  </g>
+</svg>
